@@ -1,12 +1,18 @@
 package main
 
-import "fmt"
+import (
+	"encoding/csv"
+	"fmt"
+	"log"
+	"os"
+	"strconv"
+)
 
 var todoList = []Todos{}
 
 type Todos struct {
 	id      int
-	items   string
+	item   string
 	checked bool
 }
 
@@ -46,8 +52,30 @@ func main() {
 	}
 }
 
-func create(t Todos){
-	fmt.Println(t)
+func create(t Todos) {
+	t.id++
+	t.item = "tacos"
+	t.checked = false
+	todoList = append(todoList, t)
+
+	fmt.Println(todoList)
+
+
+	csvFile, err := os.Create("checklist.csv")
+	if err != nil {
+		log.Fatalf("failed creating file: %s", err)
+	}
+	defer csvFile.Close()
+
+	csvwriter := csv.NewWriter(csvFile)
+	defer csvwriter.Flush()
+
+	for _, record := range todoList {
+		recordSlice := []string{strconv.Itoa(record.id), record.item, strconv.FormatBool(record.checked)}
+		if err := csvwriter.Write(recordSlice); err != nil {
+			log.Fatalf("error writing to CSV: %s", err)
+		}
+	}
 }
 
 func read(selectedAction string){
