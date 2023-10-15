@@ -7,8 +7,30 @@ import (
 	"os"
 	"strconv"
 )
+file, err := os.Open("checklist.csv")
+if err != nil {
+    log.Fatal(err)
+}
+defer file.Close()
+records, err := csv.NewReader(file).ReadAll()
+if err != nil {
+    // handle error
 
+	}
+	
 var todoList = []Todos{}
+	for _, record := range records {
+		// strconv.Itoa(record.id), record.item, strconv.FormatBool(record.checked)
+		itemD, _ := record.item
+		checkedD, _ := FormatBool(record.checked)
+		data := CsvLine{
+			ID: record[0],
+			item: itemD,
+			checked,checkedD
+		}
+		todoList = append(todoList, data)
+	}
+
 
 type Todos struct {
 	id      int
