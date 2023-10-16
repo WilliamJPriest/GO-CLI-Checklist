@@ -109,7 +109,7 @@ func delete(selectedAction string){
 func money(){
 	fmt.Println("ttt")
 	fmt.Println(`
-	
+
 	⠀⠀⠀⠀⣀⣀⣀⡀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⣀⡾⠧⠀⠀⠥⢀⡀⠀⠀
 ⠀⠀⠀⢀⣴⠋⠁⠀⠀⠀⠀⠀⠀⠀⠑⡄
