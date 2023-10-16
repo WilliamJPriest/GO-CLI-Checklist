@@ -10,6 +10,11 @@ import (
 	"strings"
 )
 
+// const (
+// 	Create string = "Create",
+// 	Read   string = "Read",
+// )
+
 var todoList = []Todos{}
 
 
@@ -50,6 +55,9 @@ func main() {
 	}
 	if selectedAction == "Delete" {
 		delete(selectedAction)
+	}
+	if selectedAction == "Millionaire" {
+		money()
 	}
 }
 
@@ -96,4 +104,25 @@ func update(selectedAction string){
 
 func delete(selectedAction string){
 	fmt.Println(selectedAction)
+}
+
+func money(){
+	fmt.Println("ttt")
+	fmt.Println(`
+	
+	⠀⠀⠀⠀⣀⣀⣀⡀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⣀⡾⠧⠀⠀⠥⢀⡀⠀⠀
+⠀⠀⠀⢀⣴⠋⠁⠀⠀⠀⠀⠀⠀⠀⠑⡄
+⠀⠀⢠⡟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⠁
+⠀⢀⣻⠁⠀⠀⠀⣰⢿⠀⠸⣽⣗⠖⠃⠀
+⠀⠸⢼⠀⠀⠀⠀⣗⢽⠀⠄⠀⠁⠀⠀⠀
+⠀⢸⠝⡆⠀⠀⠀⠈⠛⠃⠰⠤⢀⠀⠀⠀
+⠀⠀⢯⠜⠦⡀⠀⠀⠀⠀⠀⠀⠀⠉⢂⠀
+⠀⠀⠀⠓⢎⣝⠕⣲⡆⠀⡀⠀⠀⠀⠀⠆
+⠀⠀⠀⠀⣄⠈⢙⢕⡇⠀⣿⡆⠀⠀⠀⢸
+⠀⣠⠔⠉⠈⠑⠴⢬⡇⠀⡷⠃⠀⠀⠀⡈
+⠸⡡⢓⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣰⠁
+⠀⠈⠫⣎⡝⡢⢤⣀⠀⠀⣀⣀⡤⡾⠃⠀
+⠀⠀⠀⠀⠉⠚⣔⣿⣤⣤⡽⠓⠉⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠘⠛⠛⠋⠀⠀⠀`)
 }
