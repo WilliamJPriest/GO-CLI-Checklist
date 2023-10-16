@@ -1,39 +1,20 @@
 package main
 
 import (
+	"bufio"
 	"encoding/csv"
 	"fmt"
 	"log"
 	"os"
 	"strconv"
+	"strings"
 )
-file, err := os.Open("checklist.csv")
-if err != nil {
-    log.Fatal(err)
-}
-defer file.Close()
-records, err := csv.NewReader(file).ReadAll()
-if err != nil {
-    // handle error
 
-	}
-	
 var todoList = []Todos{}
-	for _, record := range records {
-		// strconv.Itoa(record.id), record.item, strconv.FormatBool(record.checked)
-		itemD, _ := record.item
-		checkedD, _ := FormatBool(record.checked)
-		data := CsvLine{
-			ID: record[0],
-			item: itemD,
-			checked,checkedD
-		}
-		todoList = append(todoList, data)
-	}
 
 
 type Todos struct {
-	id      int
+	id      string
 	item   string
 	checked bool
 }
@@ -47,7 +28,6 @@ type Todos struct {
 
 func main() {
 	var selectedAction string
-	t := Todos{}
 
 	fmt.Println(`Select Action: 
 
@@ -55,11 +35,12 @@ func main() {
 	Read
 	Update
 	Delete
+	Become a Millionaire
 
 	`)
 	fmt.Scanln(&selectedAction)
 	if selectedAction == "Create" {
-		create(t)
+		create()
 	};
 	if selectedAction == "Read" {
 		read(selectedAction)
@@ -69,21 +50,26 @@ func main() {
 	}
 	if selectedAction == "Delete" {
 		delete(selectedAction)
-	}else{
-		println("Error, Ctrl C to reset program")
 	}
 }
 
-func create(t Todos) {
-	t.id++
-	t.item = "tacos"
-	t.checked = false
-	todoList = append(todoList, t)
+
+func create() {
+	var todoItem string
+	t := Todos{}
+	fmt.Println("write custom id: Example: mom1")
+	fmt.Scanln(&t.id)
+	fmt.Println("write your todo:")
+    reader := bufio.NewReader(os.Stdin)
+    todoItem, _ = reader.ReadString('\n')
+    t.item = strings.TrimSpace(todoItem)
+    t.checked = false
+    todoList = append(todoList, t)
 
 	fmt.Println(todoList)
 
 
-	csvFile, err := os.Create("checklist.csv")
+	csvFile, err := os.OpenFile("checklist.csv", os.O_CREATE | os.O_APPEND, 0644)
 	if err != nil {
 		log.Fatalf("failed creating file: %s", err)
 	}
@@ -93,7 +79,7 @@ func create(t Todos) {
 	defer csvwriter.Flush()
 
 	for _, record := range todoList {
-		recordSlice := []string{strconv.Itoa(record.id), record.item, strconv.FormatBool(record.checked)}
+		recordSlice := []string{record.id, record.item, strconv.FormatBool(record.checked)}
 		if err := csvwriter.Write(recordSlice); err != nil {
 			log.Fatalf("error writing to CSV: %s", err)
 		}
