@@ -8,6 +8,7 @@ import (
 	"os"
 	"strconv"
 	"strings"
+	"flag"
 )
 
 // const (
@@ -33,7 +34,14 @@ type Todos struct {
 
 func main() {
 	var selectedAction string
+	var createF string
+	flag.StringVar(&createF, "create", "", "skips to the create func")
+	flag.Parse()
 
+	if createF == "a"{
+		create()
+	}
+	
 	fmt.Println(`Select Action: 
 
 	Create
