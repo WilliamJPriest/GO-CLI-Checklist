@@ -1,4 +1,4 @@
-![Golang Gopher chiiling by his laptop](https://ibb.co/Njrpt8B)
+![Golang Gopher chiiling by his laptop](https://i.ibb.co/T81RYV3/fc28f9f73dea4599b2d5ac2b3cacc13e.jpg)
 
 # **Go Cli Checklist**
 --- 
@@ -33,7 +33,7 @@ they skip the intial question. [^2]
 ## **Future Updates**
 --
 
-![alt text](https://ibb.co/phXLwCV)
+![alt text](https://i.ibb.co/7ky1C7M/it-s-amazing-what.png)
 
 
 
