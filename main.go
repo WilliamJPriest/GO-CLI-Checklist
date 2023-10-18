@@ -66,10 +66,10 @@ func main() {
 		read()
 	}
 	if selectedAction == "Update" {
-		update(selectedAction)
+		update()
 	}
 	if selectedAction == "Delete" {
-		delete(selectedAction)
+		delete()
 	}
 	if selectedAction == "Millionaire" {
 		money()
@@ -130,12 +130,99 @@ func read(){
 
 }
 
-func update(selectedAction string){
-	fmt.Println(selectedAction)
+func update() {
+	fmt.Println("Write id of the task you wish to update as complete")
+    csvFile, err := os.Open("checklist.csv")
+    if err != nil {
+        log.Fatalf("failed opening file: %s", err)
+    }
+    defer csvFile.Close()
+
+    reader := csv.NewReader(csvFile)
+
+    records, err := reader.ReadAll()
+
+    if err != nil {
+        fmt.Println("Error reading records")
+    }
+
+    newCSVFile, err := os.Create("checklist_new.csv")
+    if err != nil {
+        log.Fatalf("failed creating new file: %s", err)
+    }
+    defer newCSVFile.Close()
+
+    csvwriter := csv.NewWriter(newCSVFile)
+
+    for _, eachrecord := range records {
+        if eachrecord[0] == "spiv" {
+            recordSlice := []string{eachrecord[0], eachrecord[1], strconv.FormatBool(true)}
+
+            if err := csvwriter.Write(recordSlice); err != nil {
+                log.Fatalf("error writing to CSV: %s", err)
+            }
+        } else {
+            if err := csvwriter.Write(eachrecord); err != nil {
+                log.Fatalf("error writing to CSV: %s", err)
+            }
+        }
+    }
+
+    csvwriter.Flush()
+
+
+    csvFile.Close()
+    newCSVFile.Close()
+
+    if err := os.Rename("checklist_new.csv", "checklist.csv"); err != nil {
+        log.Fatalf("failed renaming file: %s", err)
+    }
 }
 
-func delete(selectedAction string){
-	fmt.Println(selectedAction)
+func delete(){
+	csvFile, err := os.Open("checklist.csv")
+    if err != nil {
+        log.Fatalf("failed opening file: %s", err)
+    }
+    defer csvFile.Close()
+
+    reader := csv.NewReader(csvFile)
+
+    records, err := reader.ReadAll()
+
+    if err != nil {
+        fmt.Println("Error reading records")
+    }
+
+    newCSVFile, err := os.Create("checklist_new.csv")
+    if err != nil {
+        log.Fatalf("failed creating new file: %s", err)
+    }
+    defer newCSVFile.Close()
+
+    csvwriter := csv.NewWriter(newCSVFile)
+
+    for _, eachrecord := range records {
+        if eachrecord[0] == "spiv" {
+            fmt.Println("skip this line")
+
+        } else {
+            if err := csvwriter.Write(eachrecord); err != nil {
+                log.Fatalf("error writing to CSV: %s", err)
+            }
+        }
+    }
+
+    csvwriter.Flush()
+
+
+    csvFile.Close()
+    newCSVFile.Close()
+
+
+    if err := os.Rename("checklist_new.csv", "checklist.csv"); err != nil {
+        log.Fatalf("failed renaming file: %s", err)
+    }
 }
 
 func money(){
