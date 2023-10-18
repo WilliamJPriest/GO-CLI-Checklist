@@ -35,14 +35,21 @@ type Todos struct {
 func main() {
 	var selectedAction string
 	var createF string
+	var readF string
 	flag.StringVar(&createF, "create", "", "skips to the create func")
+	flag.StringVar(&readF, "read", "", "skips to the read func")
 	flag.Parse()
 
 	if createF == "a"{
 		create()
 	}
+	if readF == "a"{
+		read()
+	}
 	
-	fmt.Println(`Select Action: 
+	fmt.Println(`
+	
+	Select Action: 
 
 	Create
 	Read
@@ -56,7 +63,7 @@ func main() {
 		create()
 	};
 	if selectedAction == "Read" {
-		read(selectedAction)
+		read()
 	}
 	if selectedAction == "Update" {
 		update(selectedAction)
@@ -102,7 +109,7 @@ func create() {
 	}
 }
 
-func read(selectedAction string){
+func read(){
 	csvFile,err := os.Open("checklist.csv")
 	if err != nil {
 		log.Fatalf("failed creating file: %s", err)
