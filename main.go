@@ -11,10 +11,8 @@ import (
 	"flag"
 )
 
-// const (
-// 	Create string = "Create",
-// 	Read   string = "Read",
-// )
+
+var checklistPath string = "checklist.csv"
 
 var todoList = []Todos{}
 
@@ -121,7 +119,7 @@ func create() {
 }
 
 func read(){
-	csvFile,err := os.Open("checklist.csv")
+	csvFile,err := os.Open(checklistPath)
 	if err != nil {
 		log.Fatalf("failed creating file: %s", err)
 	}
@@ -146,7 +144,7 @@ func update() {
 	fmt.Println("Write id of the task you wish to update as complete")
 	fmt.Scanln(&updateID)
 
-    csvFile, err := os.Open("checklist.csv")
+    csvFile, err := os.Open(checklistPath)
     if err != nil {
         log.Fatalf("failed opening file: %s", err)
     }
@@ -188,7 +186,7 @@ func update() {
     csvFile.Close()
     newCSVFile.Close()
 
-    if err := os.Rename("checklist_new.csv", "checklist.csv"); err != nil {
+    if err := os.Rename("checklist_new.csv", checklistPath); err != nil {
         log.Fatalf("failed renaming file: %s", err)
     }
 }
@@ -197,7 +195,7 @@ func delete(){
 	var deleteID string
 	fmt.Println("Write id of the task you wish to delete")
 	fmt.Scanln(&deleteID)
-	csvFile, err := os.Open("checklist.csv")
+	csvFile, err := os.Open(checklistPath)
     if err != nil {
         log.Fatalf("failed opening file: %s", err)
     }
@@ -237,7 +235,7 @@ func delete(){
     newCSVFile.Close()
 
 
-    if err := os.Rename("checklist_new.csv", "checklist.csv"); err != nil {
+    if err := os.Rename("checklist_new.csv", checklistPath); err != nil {
         log.Fatalf("failed renaming file: %s", err)
     }
 }
