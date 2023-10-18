@@ -1,2 +1,2 @@
-- Currently Still In Progress -
+<div style="text-align:center">**Go Cli Checklist**</div>
 

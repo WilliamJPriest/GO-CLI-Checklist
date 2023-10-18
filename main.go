@@ -36,8 +36,13 @@ func main() {
 	var selectedAction string
 	var createF string
 	var readF string
+	var updateF string
+	var deleteF string
+
 	flag.StringVar(&createF, "create", "", "skips to the create func")
 	flag.StringVar(&readF, "read", "", "skips to the read func")
+	flag.StringVar(&updateF, "update", "", "skips to the update func")
+	flag.StringVar(&deleteF, "delete", "", "skips to the delete func")
 	flag.Parse()
 
 	if createF == "a"{
@@ -45,6 +50,12 @@ func main() {
 	}
 	if readF == "a"{
 		read()
+	}
+	if updateF == "a"{
+		update()
+	}
+	if deleteF == "a"{
+		delete()
 	}
 	
 	fmt.Println(`
@@ -101,8 +112,8 @@ func create() {
 	csvwriter := csv.NewWriter(csvFile)
 	defer csvwriter.Flush()
 
-	for _, record := range todoList {
-		recordSlice := []string{record.id, record.item, strconv.FormatBool(record.checked)}
+	for _, eachrecord := range todoList {
+		recordSlice := []string{eachrecord.id, eachrecord.item, strconv.FormatBool(eachrecord.checked)}
 		if err := csvwriter.Write(recordSlice); err != nil {
 			log.Fatalf("error writing to CSV: %s", err)
 		}
@@ -131,7 +142,10 @@ func read(){
 }
 
 func update() {
+	var updateID string
 	fmt.Println("Write id of the task you wish to update as complete")
+	fmt.Scanln(&updateID)
+
     csvFile, err := os.Open("checklist.csv")
     if err != nil {
         log.Fatalf("failed opening file: %s", err)
@@ -155,7 +169,7 @@ func update() {
     csvwriter := csv.NewWriter(newCSVFile)
 
     for _, eachrecord := range records {
-        if eachrecord[0] == "spiv" {
+        if eachrecord[0] == updateID {
             recordSlice := []string{eachrecord[0], eachrecord[1], strconv.FormatBool(true)}
 
             if err := csvwriter.Write(recordSlice); err != nil {
@@ -180,6 +194,9 @@ func update() {
 }
 
 func delete(){
+	var deleteID string
+	fmt.Println("Write id of the task you wish to delete")
+	fmt.Scanln(&deleteID)
 	csvFile, err := os.Open("checklist.csv")
     if err != nil {
         log.Fatalf("failed opening file: %s", err)
@@ -203,8 +220,8 @@ func delete(){
     csvwriter := csv.NewWriter(newCSVFile)
 
     for _, eachrecord := range records {
-        if eachrecord[0] == "spiv" {
-            fmt.Println("skip this line")
+        if eachrecord[0] == deleteID {
+            fmt.Println("Deleted")
 
         } else {
             if err := csvwriter.Write(eachrecord); err != nil {
