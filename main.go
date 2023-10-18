@@ -103,7 +103,24 @@ func create() {
 }
 
 func read(selectedAction string){
-	fmt.Println(selectedAction)
+	csvFile,err := os.Open("checklist.csv")
+	if err != nil {
+		log.Fatalf("failed creating file: %s", err)
+	}
+	defer csvFile.Close()
+
+	reader := csv.NewReader(csvFile) 
+
+	records, err := reader.ReadAll() 
+  
+    if err != nil  { 
+        fmt.Println("Error reading records") 
+    } 
+      
+    for _, eachrecord := range records  { 
+        fmt.Println(eachrecord) 
+    } 
+
 }
 
 func update(selectedAction string){
