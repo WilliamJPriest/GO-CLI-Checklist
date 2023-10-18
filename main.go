@@ -23,13 +23,6 @@ type Todos struct {
 	checked bool
 }
 
-// type TodoListFuncs interface {
-// 	create()
-// 	read()
-// 	update()
-// 	delete()
-// }
-
 func main() {
 	var selectedAction string
 	var createF string
