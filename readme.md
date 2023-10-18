@@ -1,6 +1,6 @@
 ![alt text](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfKsoP_M4oE-LhZl8ej-SpW4gqqL2MwkeNRY-qkxYgkRmHyvsrS3Sz9leOULJ-Js8vRX8&usqp=CAU)
 
-# **Go Cli Checklist**
+# **<p> style="text-align: center;">Go Cli Checklist</p>**
 --- 
 
 Welcome to Go CLI Checklist, this is a CLI / Tui based Task manager. Everything is stored locally so there's no need to be online or fear forgetting your password.
