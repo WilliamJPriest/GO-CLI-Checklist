@@ -1,5 +1,4 @@
 Id," Item"," Checked"
 goc1,add script for user selected file path,false
-goc2,move funcs to their own file,true
-goc3,add secret funcs,false
-goc4,fix id names,false
+goc2,add secret funcs,false
+goc3,fix id names,false

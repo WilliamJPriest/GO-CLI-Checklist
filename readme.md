@@ -1,6 +1,6 @@
-![alt text](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfKsoP_M4oE-LhZl8ej-SpW4gqqL2MwkeNRY-qkxYgkRmHyvsrS3Sz9leOULJ-Js8vRX8&usqp=CAU)
+![Golang Gopher chiiling by his laptop](https://ibb.co/Njrpt8B)
 
-# **<p style="text-align: center;">Go Cli Checklist</p>**
+# **Go Cli Checklist**
 --- 
 
 Welcome to Go CLI Checklist, this is a CLI / Tui based Task manager. Everything is stored locally so there's no need to be online or fear forgetting your password.
@@ -33,7 +33,7 @@ they skip the intial question. [^2]
 ## **Future Updates**
 --
 
-![alt text](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfKsoP_M4oE-LhZl8ej-SpW4gqqL2MwkeNRY-qkxYgkRmHyvsrS3Sz9leOULJ-Js8vRX8&usqp=CAU)
+![alt text](https://ibb.co/phXLwCV)
 
 
 

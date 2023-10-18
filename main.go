@@ -57,7 +57,7 @@ func main() {
 	Read
 	Update
 	Delete
-	Become a Millionaire
+	Millionaire
 
 	`)
 	fmt.Scanln(&selectedAction)
@@ -234,7 +234,6 @@ func delete(){
 }
 
 func money(){
-	fmt.Println("ttt")
 	fmt.Println(`
 
 	⠀⠀⠀⠀⣀⣀⣀⡀⠀⠀⠀⠀
