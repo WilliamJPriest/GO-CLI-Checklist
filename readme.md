@@ -6,13 +6,11 @@ Welcome to Go CLI Checklist, this is a CLI / Tui based Task manager. Everything 
 ## **Basic Setup**
 
 
-Please Change
+The CSV is stored on your user directory if you ever need to locate it.
 
-`var checklistPath string = "checklist.csv"`
+i.e
 
-to your desired location of the checklist.csv, feel free to change the file name to anything you want. [^1]
-
-[^1]:Currently working on a script that will take care of this on first use.
+`C:\Users\Lenovo\checklists.csv` 
 
 ## **Advanced Shortcuts**
 
@@ -24,9 +22,9 @@ Use these flags
     - checklist -update a
     - checklist -delete a
 
-they skip the intial question. [^2]
+they skip the intial question. [^1]
 
-[^2]: Maybe some scerets ones to be added later.
+[^1]: Maybe some scerets ones to be added later.
 
 ## **Future Updates**
 

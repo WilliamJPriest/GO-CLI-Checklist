@@ -9,10 +9,12 @@ import (
 	"strconv"
 	"strings"
 	"flag"
+	"path/filepath"
+
 )
 
 
-var checklistPath string = "checklists/checklist.csv"
+
 
 var todoList = []Todos{}
 
@@ -22,6 +24,17 @@ type Todos struct {
 	item   string
 	checked bool
 }
+
+func getUserHomeDir() string {
+	home, err := os.UserHomeDir()
+	if err != nil {
+		// Fallback to the current directory if user home directory cannot be determined
+		return "."
+	}
+	return home
+}
+
+var checklistPath = filepath.Join(getUserHomeDir(), "checklists.csv")
 
 func main() {
 	var selectedAction string

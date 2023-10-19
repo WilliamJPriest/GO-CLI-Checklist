@@ -1,3 +1,3 @@
-module github.com/WilliamJPriest/GO-CLI-Checklist
+module github.com/WilliamJPriest/checklist
 
 go 1.21.2
