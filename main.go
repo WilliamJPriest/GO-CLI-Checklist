@@ -3,25 +3,18 @@ package main
 import (
 	"bufio"
 	"encoding/csv"
+	"flag"
 	"fmt"
 	"log"
 	"os"
 	"strconv"
 	"strings"
-	"flag"
+	"github.com/WilliamJPriest/GO-CLI-Checklist/cmd"
 )
 
 
 var checklistPath string = "checklist.csv"
 
-var todoList = []Todos{}
-
-
-type Todos struct {
-	id      string
-	item   string
-	checked bool
-}
 
 func main() {
 	var selectedAction string
@@ -37,7 +30,7 @@ func main() {
 	flag.Parse()
 
 	if createF == "a"{
-		create()
+		cmd.create()
 	}
 	if readF == "a"{
 		read()
@@ -62,7 +55,7 @@ func main() {
 	`)
 	fmt.Scanln(&selectedAction)
 	if selectedAction == "Create" {
-		create()
+		cmd.create()
 	};
 	if selectedAction == "Read" {
 		read()
@@ -79,37 +72,37 @@ func main() {
 }
 
 
-func create() {
-	var todoItem string
-	t := Todos{}
-	fmt.Println("write custom id: Example: mom1")
-	fmt.Scanln(&t.id)
-	fmt.Println("write your todo:")
-    reader := bufio.NewReader(os.Stdin)
-    todoItem, _ = reader.ReadString('\n')
-    t.item = strings.TrimSpace(todoItem)
-    t.checked = false
-    todoList = append(todoList, t)
+// func create() {
+	// var todoItem string
+	// t := Todos{}
+	// fmt.Println("write custom id: Example: mom1")
+	// fmt.Scanln(&t.id)
+	// fmt.Println("write your todo:")
+    // reader := bufio.NewReader(os.Stdin)
+    // todoItem, _ = reader.ReadString('\n')
+    // t.item = strings.TrimSpace(todoItem)
+    // t.checked = false
+    // todoList = append(todoList, t)
 
-	fmt.Println(todoList)
+	// fmt.Println(todoList)
 
 
-	csvFile, err := os.OpenFile("checklist.csv", os.O_CREATE | os.O_APPEND, 0644)
-	if err != nil {
-		log.Fatalf("failed creating file: %s", err)
-	}
-	defer csvFile.Close()
+	// csvFile, err := os.OpenFile("checklist.csv", os.O_CREATE | os.O_APPEND, 0644)
+	// if err != nil {
+	// 	log.Fatalf("failed creating file: %s", err)
+	// }
+	// defer csvFile.Close()
 
-	csvwriter := csv.NewWriter(csvFile)
-	defer csvwriter.Flush()
+	// csvwriter := csv.NewWriter(csvFile)
+	// defer csvwriter.Flush()
 
-	for _, eachrecord := range todoList {
-		recordSlice := []string{eachrecord.id, eachrecord.item, strconv.FormatBool(eachrecord.checked)}
-		if err := csvwriter.Write(recordSlice); err != nil {
-			log.Fatalf("error writing to CSV: %s", err)
-		}
-	}
-}
+	// for _, eachrecord := range todoList {
+	// 	recordSlice := []string{eachrecord.id, eachrecord.item, strconv.FormatBool(eachrecord.checked)}
+	// 	if err := csvwriter.Write(recordSlice); err != nil {
+	// 		log.Fatalf("error writing to CSV: %s", err)
+	// 	}
+	// }
+// }
 
 func read(){
 	csvFile,err := os.Open(checklistPath)
