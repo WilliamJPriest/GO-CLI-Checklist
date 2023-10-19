@@ -141,12 +141,15 @@ func read(){
     } 
       
     for _, eachrecord := range records  { 
-        fmt.Println(eachrecord) 
-    } 
-
+		var checkBox = '☐'
+        if eachrecord[2] == "true" {
+				checkBox= '☑'
+		}
+		fmt.Println("id: "+eachrecord[0]+" | " +string(checkBox)+"  "+ eachrecord[1])
+	}
 }
 
-func update() {
+func update(){
 	var updateID string
 	fmt.Println("Write id of the task you wish to update as complete")
 	fmt.Scanln(&updateID)
