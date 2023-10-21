@@ -35,6 +35,7 @@ func getUserHomeDir() string {
 }
 
 var checklistPath = filepath.Join(getUserHomeDir(), "checklists.csv")
+var newCheckListPath = filepath.Join(getUserHomeDir(), "checklist_new.csv")
 
 func main() {
 	var selectedAction string
@@ -173,7 +174,7 @@ func update(){
         fmt.Println("Error reading records")
     }
 
-    newCSVFile, err := os.Create("checklist_new.csv")
+    newCSVFile, err := os.Create(newCheckListPath)
     if err != nil {
         log.Fatalf("failed creating new file: %s", err)
     }
@@ -201,7 +202,7 @@ func update(){
     csvFile.Close()
     newCSVFile.Close()
 
-    if err := os.Rename("checklist_new.csv", checklistPath); err != nil {
+    if err := os.Rename(newCheckListPath, checklistPath); err != nil {
         log.Fatalf("failed renaming file: %s", err)
     }
 }
@@ -224,7 +225,7 @@ func delete(){
         fmt.Println("Error reading records")
     }
 
-    newCSVFile, err := os.Create("checklist_new.csv")
+    newCSVFile, err := os.Create(newCheckListPath)
     if err != nil {
         log.Fatalf("failed creating new file: %s", err)
     }
@@ -250,7 +251,7 @@ func delete(){
     newCSVFile.Close()
 
 
-    if err := os.Rename("checklist_new.csv", checklistPath); err != nil {
+    if err := os.Rename(newCheckListPath, checklistPath); err != nil {
         log.Fatalf("failed renaming file: %s", err)
     }
 }
