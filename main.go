@@ -102,9 +102,9 @@ func main() {
 func create() {
 	var todoItem string
 	t := Todos{}
-	fmt.Println("write custom id: Example: mom1")
+	fmt.Println("\nwrite custom id: Example: mom1")
 	fmt.Scanln(&t.id)
-	fmt.Println("write your todo:")
+	fmt.Println("\nwrite your todo:")
     reader := bufio.NewReader(os.Stdin)
     todoItem, _ = reader.ReadString('\n')
     t.item = strings.TrimSpace(todoItem)
@@ -153,11 +153,12 @@ func read(){
 		}
 		fmt.Println("id: "+eachrecord[0]+" | " +string(checkBox)+"  "+ eachrecord[1])
 	}
+	fmt.Println("")
 }
 
 func update(){
 	var updateID string
-	fmt.Println("Write id of the task you wish to update as complete")
+	fmt.Println("\nWrite id of the task you wish to update as complete")
 	fmt.Scanln(&updateID)
 
     csvFile, err := os.Open(checklistPath)
@@ -207,7 +208,6 @@ func update(){
     if err := os.Rename(newCheckListPath, checklistPath); err != nil {
         log.Fatalf("failed renaming file: %s", err)
     }
-	
 	read()
 }
 
