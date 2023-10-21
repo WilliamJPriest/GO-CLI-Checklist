@@ -111,7 +111,7 @@ func create() {
     t.checked = false
     todoList = append(todoList, t)
 
-	fmt.Println(todoList)
+	fmt.Println("\n"+t.id+" | ☐  " +t.item+"\n")
 
 
 	csvFile, err := os.OpenFile(checklistPath, os.O_CREATE | os.O_APPEND, 0644)
@@ -129,7 +129,6 @@ func create() {
 			log.Fatalf("error writing to CSV: %s", err)
 		}
 	}
-	read()
 }
 
 func read(){
@@ -146,7 +145,7 @@ func read(){
     if err != nil  { 
         fmt.Println("Error reading records") 
     } 
-      
+    fmt.Println("")
     for _, eachrecord := range records  { 
 		var checkBox = '☐'
         if eachrecord[2] == "true" {
