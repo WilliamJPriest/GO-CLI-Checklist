@@ -9,7 +9,6 @@ import (
 	"strconv"
 	"strings"
 	"flag"
-	"path/filepath"
 	"github.com/WilliamJPriest/checklist/storage"
 
 )
@@ -26,8 +25,6 @@ type Todos struct {
 	checked bool
 }
 
-var checklistPath = filepath.Join(storage.GetUserHomeDir(), "checklists.csv")
-var newCheckListPath = filepath.Join(storage.GetUserHomeDir(), "checklist_new.csv")
 
 func main() {
 	var selectedAction string
@@ -106,7 +103,7 @@ func create() {
 	fmt.Println("\n"+t.id+" | ☐  " +t.item+"\n")
 
 
-	csvFile, err := os.OpenFile(checklistPath, os.O_CREATE | os.O_APPEND, 0644)
+	csvFile, err := os.OpenFile(storage.ChecklistPath, os.O_CREATE | os.O_APPEND, 0644)
 	if err != nil {
 		log.Fatalf("failed creating file: %s", err)
 	}
@@ -124,7 +121,7 @@ func create() {
 }
 
 func read(){
-	csvFile,err := os.Open(checklistPath)
+	csvFile,err := os.Open(storage.ChecklistPath)
 	if err != nil {
 		log.Fatalf("failed creating file: %s", err)
 	}
@@ -153,7 +150,7 @@ func update(){
 	fmt.Println("\nWrite id of the task you wish to update as complete")
 	fmt.Scanln(&updateID)
 
-    csvFile, err := os.Open(checklistPath)
+    csvFile, err := os.Open(storage.ChecklistPath)
     if err != nil {
         log.Fatalf("failed opening file: %s", err)
     }
@@ -167,7 +164,7 @@ func update(){
         fmt.Println("Error reading records")
     }
 
-    newCSVFile, err := os.Create(newCheckListPath)
+    newCSVFile, err := os.Create(storage.NewCheckListPath)
     if err != nil {
         log.Fatalf("failed creating new file: %s", err)
     }
@@ -197,7 +194,7 @@ func update(){
     csvFile.Close()
     newCSVFile.Close()
 
-    if err := os.Rename(newCheckListPath, checklistPath); err != nil {
+    if err := os.Rename(storage.NewCheckListPath, storage.ChecklistPath); err != nil {
         log.Fatalf("failed renaming file: %s", err)
     }
 	read()
@@ -207,7 +204,7 @@ func delete(){
 	var deleteID string
 	fmt.Println("Write id of the task you wish to delete")
 	fmt.Scanln(&deleteID)
-	csvFile, err := os.Open(checklistPath)
+	csvFile, err := os.Open(storage.ChecklistPath)
     if err != nil {
         log.Fatalf("failed opening file: %s", err)
     }
@@ -221,7 +218,7 @@ func delete(){
         fmt.Println("Error reading records")
     }
 
-    newCSVFile, err := os.Create(newCheckListPath)
+    newCSVFile, err := os.Create(storage.NewCheckListPath)
     if err != nil {
         log.Fatalf("failed creating new file: %s", err)
     }
@@ -247,7 +244,7 @@ func delete(){
     newCSVFile.Close()
 
 
-    if err := os.Rename(newCheckListPath, checklistPath); err != nil {
+    if err := os.Rename(storage.NewCheckListPath, storage.ChecklistPath); err != nil {
         log.Fatalf("failed renaming file: %s", err)
     }
 	read()
