@@ -39,27 +39,27 @@ var newCheckListPath = filepath.Join(getUserHomeDir(), "checklist_new.csv")
 
 func main() {
 	var selectedAction string
-	var createF string
-	var readF string
-	var updateF string
-	var deleteF string
+	var createF bool
+	var readF bool
+	var updateF bool
+	var deleteF bool
 
-	flag.StringVar(&createF, "create", "", "skips to the create func")
-	flag.StringVar(&readF, "read", "", "skips to the read func")
-	flag.StringVar(&updateF, "update", "", "skips to the update func")
-	flag.StringVar(&deleteF, "delete", "", "skips to the delete func")
+	flag.BoolVar(&createF, "create", false, "skips to the create func")
+	flag.BoolVar(&readF, "read", false, "skips to the read func")
+	flag.BoolVar(&updateF, "update", false, "skips to the update func")
+	flag.BoolVar(&deleteF, "delete", false, "skips to the delete func")
 	flag.Parse()
 
-	if createF == "a"{
+	if createF{
 		create()
 	}
-	if readF == "a"{
+	if readF{
 		read()
 	}
-	if updateF == "a"{
+	if updateF{
 		update()
 	}
-	if deleteF == "a"{
+	if deleteF{
 		delete()
 	}
 	
@@ -129,6 +129,7 @@ func create() {
 			log.Fatalf("error writing to CSV: %s", err)
 		}
 	}
+	read()
 }
 
 func read(){
@@ -185,7 +186,8 @@ func update(){
     for _, eachrecord := range records {
         if eachrecord[0] == updateID {
             recordSlice := []string{eachrecord[0], eachrecord[1], strconv.FormatBool(true)}
-
+			fmt.Println("\nUpdated: "+ eachrecord[1]+ "\n")
+				
             if err := csvwriter.Write(recordSlice); err != nil {
                 log.Fatalf("error writing to CSV: %s", err)
             }
@@ -197,6 +199,7 @@ func update(){
     }
 
     csvwriter.Flush()
+	
 
 
     csvFile.Close()
@@ -205,6 +208,8 @@ func update(){
     if err := os.Rename(newCheckListPath, checklistPath); err != nil {
         log.Fatalf("failed renaming file: %s", err)
     }
+	
+	read()
 }
 
 func delete(){
@@ -235,7 +240,7 @@ func delete(){
 
     for _, eachrecord := range records {
         if eachrecord[0] == deleteID {
-            fmt.Println("Deleted")
+			fmt.Println("\nDeleted: "+ eachrecord[1]+ "\n")
 
         } else {
             if err := csvwriter.Write(eachrecord); err != nil {
@@ -254,6 +259,8 @@ func delete(){
     if err := os.Rename(newCheckListPath, checklistPath); err != nil {
         log.Fatalf("failed renaming file: %s", err)
     }
+	read()
+
 }
 
 func money(){
