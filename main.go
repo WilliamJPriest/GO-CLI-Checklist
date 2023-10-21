@@ -10,6 +10,7 @@ import (
 	"strings"
 	"flag"
 	"path/filepath"
+	"github.com/WilliamJPriest/checklist/storage"
 
 )
 
@@ -25,17 +26,8 @@ type Todos struct {
 	checked bool
 }
 
-func getUserHomeDir() string {
-	home, err := os.UserHomeDir()
-	if err != nil {
-		// Fallback to the current directory if user home directory cannot be determined
-		return "."
-	}
-	return home
-}
-
-var checklistPath = filepath.Join(getUserHomeDir(), "checklists.csv")
-var newCheckListPath = filepath.Join(getUserHomeDir(), "checklist_new.csv")
+var checklistPath = filepath.Join(storage.GetUserHomeDir(), "checklists.csv")
+var newCheckListPath = filepath.Join(storage.GetUserHomeDir(), "checklist_new.csv")
 
 func main() {
 	var selectedAction string
