@@ -75,21 +75,26 @@ func main() {
 	`)
 	fmt.Scanln(&selectedAction)
 	lowerCStr := strings.ToLower((selectedAction))
-	if lowerCStr== "create" {
+
+	switch lowerCStr{
+
+	case "create":
 		create()
-	};
-	if lowerCStr == "read" {
+
+	case "read":
 		read()
-	}
-	if lowerCStr == "update" {
+
+	case "update":
 		update()
-	}
-	if lowerCStr == "delete" {
+
+	case "delete":
 		delete()
-	}
-	if lowerCStr == "millionaire" {
+
+	case "millionaire":
 		money()
+
 	}
+
 }
 
 
