@@ -65,10 +65,10 @@ i.e read
 
 Use these flags
 
-    - checklist -create a
-    - checklist -read a
-    - checklist -update a
-    - checklist -delete a
+    - checklist -create 
+    - checklist -read 
+    - checklist -update 
+    - checklist -delete 
 
 they skip the intial question. [^1]
 
