@@ -54,6 +54,5 @@ func Delete() {
 	if err := os.Rename(storage.NewCheckListPath, storage.ChecklistPath); err != nil {
 		log.Fatalf("failed renaming file: %s", err)
 	}
-	Read()
 
 }
