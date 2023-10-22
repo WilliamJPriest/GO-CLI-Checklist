@@ -9,11 +9,8 @@ import (
 	"github.com/WilliamJPriest/checklist/storage"
 )
 
-func Delete() {
+func Annihilate(){
 	Read()
-	var deleteID string
-	fmt.Println("Write id of the task you wish to delete")
-	fmt.Scanln(&deleteID)
 	csvFile, err := os.Open(storage.ChecklistPath)
 	if err != nil {
 		log.Fatalf("failed opening file: %s", err)
@@ -38,8 +35,7 @@ func Delete() {
 
 	var found bool
 	for _, eachrecord := range records {
-		if eachrecord[0] == deleteID {
-			fmt.Println("\nDeleted: " + eachrecord[1] + "\n")
+		if eachrecord[0] ==eachrecord[0]{
 			found= true
 		} else {
 			if err := csvwriter.Write(eachrecord); err != nil {
@@ -57,9 +53,9 @@ func Delete() {
 		log.Fatalf("failed renaming file: %s", err)
 	}
 	if found == true{
-		fmt.Println("Deleted sucessfully")	
+		fmt.Println("\nAnnihilated Everything")	
 	}else{
-		fmt.Println("Delete FAILED")	
+		fmt.Println("\nThere is Nothing left to annihilate")	
 	}
 	
 

@@ -11,6 +11,7 @@ import (
 )
 
 func Update(){
+	Read()
 	var updateID string
 	fmt.Println("\nWrite id of the task you wish to update as complete")
 	fmt.Scanln(&updateID)
@@ -37,10 +38,12 @@ func Update(){
 
     csvwriter := csv.NewWriter(newCSVFile)
 
+	var found bool
     for _, eachrecord := range records {
         if eachrecord[0] == updateID {
             recordSlice := []string{eachrecord[0], eachrecord[1], strconv.FormatBool(true)}
-			fmt.Println("\nUpdated: "+ eachrecord[1]+ "\n")
+			fmt.Println("\nUpdated: " + eachrecord[1] + "\n")
+			found = true
 				
             if err := csvwriter.Write(recordSlice); err != nil {
                 log.Fatalf("error writing to CSV: %s", err)
@@ -62,5 +65,11 @@ func Update(){
     if err := os.Rename(storage.NewCheckListPath, storage.ChecklistPath); err != nil {
         log.Fatalf("failed renaming file: %s", err)
     }
-	Read()
+
+	if found == true{
+		fmt.Println("Updated sucessfully")	
+	}else{
+		fmt.Println("Updated FAILED")	
+	}
+	
 }
