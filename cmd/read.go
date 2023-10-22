@@ -33,4 +33,5 @@ func Read(){
 		fmt.Println("id: "+eachrecord[0]+" | " +string(checkBox)+"  "+ eachrecord[1])
 	}
 	fmt.Println("")
+	os.Exit(0)
 }
