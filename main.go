@@ -1,7 +1,6 @@
 package main
 
 import (
-	"bufio"
 	"encoding/csv"
 	"fmt"
 	"log"
@@ -10,21 +9,9 @@ import (
 	"strings"
 	"flag"
 	"github.com/WilliamJPriest/checklist/storage"
+	"github.com/WilliamJPriest/checklist/cmd"
 
 )
-
-
-
-
-var todoList = []Todos{}
-
-
-type Todos struct {
-	id      string
-	item   string
-	checked bool
-}
-
 
 func main() {
 	var selectedAction string
@@ -40,10 +27,10 @@ func main() {
 	flag.Parse()
 
 	if createF{
-		create()
+		cmd.Create()
 	}
 	if readF{
-		read()
+		cmd.Read()
 	}
 	if updateF{
 		update()
@@ -69,10 +56,10 @@ func main() {
 	switch lowerCStr{
 
 	case "create":
-		create()
+		cmd.Create()
 
 	case "read":
-		read()
+		cmd.Read()
 
 	case "update":
 		update()
@@ -87,63 +74,6 @@ func main() {
 
 }
 
-
-func create() {
-	var todoItem string
-	t := Todos{}
-	fmt.Println("\nwrite custom id: Example: mom1")
-	fmt.Scanln(&t.id)
-	fmt.Println("\nwrite your todo:")
-    reader := bufio.NewReader(os.Stdin)
-    todoItem, _ = reader.ReadString('\n')
-    t.item = strings.TrimSpace(todoItem)
-    t.checked = false
-    todoList = append(todoList, t)
-
-	fmt.Println("\n"+t.id+" | ☐  " +t.item+"\n")
-
-
-	csvFile, err := os.OpenFile(storage.ChecklistPath, os.O_CREATE | os.O_APPEND, 0644)
-	if err != nil {
-		log.Fatalf("failed creating file: %s", err)
-	}
-	defer csvFile.Close()
-
-	csvwriter := csv.NewWriter(csvFile)
-	defer csvwriter.Flush()
-
-	for _, eachrecord := range todoList {
-		recordSlice := []string{eachrecord.id, eachrecord.item, strconv.FormatBool(eachrecord.checked)}
-		if err := csvwriter.Write(recordSlice); err != nil {
-			log.Fatalf("error writing to CSV: %s", err)
-		}
-	}
-}
-
-func read(){
-	csvFile,err := os.Open(storage.ChecklistPath)
-	if err != nil {
-		log.Fatalf("failed creating file: %s", err)
-	}
-	defer csvFile.Close()
-
-	reader := csv.NewReader(csvFile) 
-
-	records, err := reader.ReadAll() 
-  
-    if err != nil  { 
-        fmt.Println("Error reading records") 
-    } 
-    fmt.Println("")
-    for _, eachrecord := range records  { 
-		var checkBox = '☐'
-        if eachrecord[2] == "true" {
-				checkBox= '☑'
-		}
-		fmt.Println("id: "+eachrecord[0]+" | " +string(checkBox)+"  "+ eachrecord[1])
-	}
-	fmt.Println("")
-}
 
 func update(){
 	var updateID string
@@ -197,7 +127,7 @@ func update(){
     if err := os.Rename(storage.NewCheckListPath, storage.ChecklistPath); err != nil {
         log.Fatalf("failed renaming file: %s", err)
     }
-	read()
+	cmd.Read()
 }
 
 func delete(){
@@ -247,7 +177,7 @@ func delete(){
     if err := os.Rename(storage.NewCheckListPath, storage.ChecklistPath); err != nil {
         log.Fatalf("failed renaming file: %s", err)
     }
-	read()
+	cmd.Read()
 
 }
 
