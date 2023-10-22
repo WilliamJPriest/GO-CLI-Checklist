@@ -50,4 +50,5 @@ func Create() {
 			log.Fatalf("error writing to CSV: %s", err)
 		}
 	}
+	Read()
 }
