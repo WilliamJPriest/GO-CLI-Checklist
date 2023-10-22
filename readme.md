@@ -3,10 +3,10 @@
 </p>
 
 
-# **Go Cli Checklist**
+# **GO Cli Checklist**
 
 
-Welcome to Go CLI Checklist, this is a CLI / Tui based Task manager. Everything is stored locally so there's no need to be online or fear forgetting your password.
+Welcome to my GO CLI Checklist, this is a CLI / TUI based Task manager. Everything is stored locally so there's no need to be online or fear forgetting your password.
 
 ## **Basic Setup**
 ---
@@ -19,7 +19,7 @@ Make sure you have GO installed and then follow these steps:
 
 3. After the build phase type go install
 
-4. to run program type checklist into your terminal
+4. to run the program type checklist
 
 5. Ta Da, everything should be working.
 
@@ -52,7 +52,7 @@ After you run checklist you should see
 
 ```
 
-Type the name of action you wish to use, it is not case-sensitive
+Type the name of the action you wish to use, it is not case-sensitive
 
 i.e read
 
@@ -66,7 +66,7 @@ i.e read
 i.e Clean
 
 ```
-    clean
+    Clean
 
     id: makeMoney ☐ Become a Millionaire
 
