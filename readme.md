@@ -44,7 +44,11 @@ After you run checklist you should see
 	Read
 	Update
 	Delete
+	Clean
+	Annihilate
 	Millionaire
+	Exit
+
 
 ```
 
@@ -59,6 +63,27 @@ i.e read
     id: makeMoney ☐ Become a Millionaire
 ```
 
+i.e Clean
+
+```
+    clean
+
+    id: makeMoney ☐ Become a Millionaire
+
+    // Clean: Clears all completed tasks
+```
+
+i.e Annihilate
+
+```
+    ANNIHILATE
+
+    // Annihilate: Clears all tasks
+```
+
+*Note: caps don't matter.
+
+
 ## **Advanced Shortcuts**
 ---
 
@@ -69,6 +94,8 @@ Use these flags
     - checklist -read 
     - checklist -update 
     - checklist -delete 
+    - checklist -clean 
+    - checklist -annihilate 
 
 they skip the intial question. [^1]
 
@@ -78,7 +105,7 @@ they skip the intial question. [^1]
 
 - [✔] Update the Readme
 - [✔] Make Prettier
-- [ ] Fix File Structure
+- [✔] Fix File Structure
 
 Feel free to make suggestions.
 
