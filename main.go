@@ -74,10 +74,13 @@ func main() {
 
 	case "delete":
 		cmd.Delete()
+
 	case "clean":
 		cmd.Clean()
+
 	case "annihilate":
 		cmd.Annihilate()
+		
 	case "millionaire":
 		cmd.Money()
 	

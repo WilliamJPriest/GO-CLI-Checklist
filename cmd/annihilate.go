@@ -55,7 +55,7 @@ func Annihilate(){
 	if found == true{
 		fmt.Println("\nAnnihilated Everything")	
 	}else{
-		fmt.Println("\nThere is Nothing left to annihilate")	
+		fmt.Println("\nThere is Nothing Left to Annihilate")	
 	}
 	
 
