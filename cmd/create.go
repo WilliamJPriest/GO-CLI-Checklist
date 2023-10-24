@@ -37,7 +37,7 @@ func Create() {
 
 	csvFile, err := os.OpenFile(storage.ChecklistPath, os.O_CREATE|os.O_APPEND, 0644)
 	if err != nil {
-		log.Fatalf("failed creating file: %s", err)
+		
 	}
 	defer csvFile.Close()
 
