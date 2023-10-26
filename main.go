@@ -25,24 +25,24 @@ func main() {
 	flag.BoolVar(&annihilateF, "annihilate", false, "skips to the annihilate func")
 	flag.Parse()
 
-	if createF{
+	switch{
+	case createF:
 		cmd.Create()
-	}
-	if readF{
+
+	case readF:
 		cmd.Read()
-	}
-	if updateF{
+	case updateF:
 		cmd.Update()
-	}
-	if deleteF{
+
+	case deleteF:
 		cmd.Delete()
-	}
-	if cleanF{
+	
+	case cleanF:
 		cmd.Clean()
-	}
-	if annihilateF{
+	
+	case annihilateF:
 		cmd.Annihilate()
-	}
+	} 
 	
 	fmt.Println(`
 	
