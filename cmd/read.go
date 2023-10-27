@@ -25,6 +25,7 @@ func Read(){
         fmt.Println("Error reading records") 
     } 
     fmt.Println("")
+
     for _, eachrecord := range records  { 
 		var checkBox = '☐'
         if eachrecord[2] == "true" {

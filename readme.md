@@ -31,7 +31,7 @@ The CSV is stored on your user directory if you ever need to locate it.
 
 i.e
 
-`C:\Users\Lenovo\checklists.csv` 
+`C:\Users\{Your Username}\checklists.csv` 
 
 ## **How to Use**
 ---
