@@ -107,7 +107,7 @@ they skip the intial question. [^1]
 - [✔] Make Prettier
 - [✔] Fix File Structure
 
-Feel free to make suggestions.
+Feel free to make a suggest a feature.
 
 
 
